@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectEmpByEmpId">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+		WHERE E.EMP_ID LIKE ?
+	</entry>
+	<entry key="selectAllEmp">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+	</entry>
+	<entry key="findEachGender">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+	   WHERE SUBSTR(EMP_NO, 8, 1) LIKE ?
+	</entry>
+	<entry key="sortEmpBySalaryAsc">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+		ORDER BY E.SALARY
+	</entry>
+	<entry key="sortEmpBySalaryDesc">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+		ORDER BY E.SALARY DESC
+	</entry>
+	<entry key="sortEmpByHireDateAsc">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+		ORDER BY E.HIRE_DATE
+	</entry>
+	<entry key="sortEmpByHireDateDesc">
+		SELECT
+		E.*
+		FROM EMPLOYEE E
+		ORDER BY E.HIRE_DATE DESC
+	</entry>
+	<entry key="findEmpTop5Salary">
+		SELECT
+	    V.*
+		FROM (SELECT E.* FROM EMPLOYEE E ORDER BY E.SALARY DESC) V
+		WHERE <![CDATA[ROWNUM <= 5]]>
+	</entry>
+	<entry key="findEmpTop6to10Salary">
+		SELECT
+        V2.*
+        FROM (SELECT ROWNUM RNUM, V.*
+                FROM (SELECT E.* FROM EMPLOYEE E
+                 ORDER BY E.SALARY DESC) V
+        WHERE ROWNUM <![CDATA[<]]> 11
+        ) V2
+        WHERE RNUM <![CDATA[>]]> 5
+	</entry>
+</properties>
